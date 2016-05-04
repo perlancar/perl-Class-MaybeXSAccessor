@@ -16,6 +16,7 @@ sub import {
     my $caller = caller();
 
     if (eval { require Class::XSAccessor; 1 }) {
+        # XXX bad, bad implementation. we need to call _generate_method directly
         $_target_spec = {
             constructor => 'new',
             accessors => { map { $_ => $_ } @{ $spec->{accessors} // [] } },
